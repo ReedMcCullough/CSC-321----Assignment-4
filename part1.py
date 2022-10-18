@@ -1,8 +1,8 @@
 from Crypto.Cipher import *
 from Crypto.Hash import SHA256
-import bcrypt
 from random import *
 import string
+from time import *
 
 def hashPrint(one, two):
     hash = SHA256.new()
@@ -45,26 +45,28 @@ def main():
 
     print()
     
-    storage = {}
     sizeList = [num for num in range(8, 51, 2)]
 
     for bit_size in sizeList:
-        count = 0
-        for x in range(10000):
+        storage = {}
+        start = time()
+        while True:
             test = SHA256.new()
             a = ''.join([choice(availOptions) for _ in range(10)])
             test.update(a.encode())
 
-            bnum = bin(int.from_bytes(test.digest(), byteorder='big'))[2:(2+bit_size)]
-            if bnum in storage.keys():
-                storage[bnum].append(a)
-                count += 1
+            bnum = bin(int.from_bytes(test.digest(), byteorder='big'))[:bit_size]
+            if bnum in storage:
+                print('Number', bnum, "collided with another key already in hash")
+                break
             else:
-                storage[bnum] = [a]
+                storage[bnum] = a
+        finish = time() - start
+        print("It takes", bit_size, "bits", finish, "seconds")
+        print()
 
 
-        print(len(storage.keys()) == len(set(storage.keys())))
-        print(count)
+
 
 if __name__ == "__main__":
     main()
