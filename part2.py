@@ -2,6 +2,18 @@ import bcrypt
 import nltk
 import time
 
+
+# [['Bilbo', b'welcome', 1557.7713930606842]]
+# [['Gandalf', b'wizard', 1565.0937330722809], ['Thorin', b'diamond', 376.1382632255554], ['Fili', b'desire', 739.19926404953]
+# ['Kili', b'ossify', 1823.756455898285], ['Balin', b'hangout', 2378.744528055191], ['Dwalin', b'drossy', 1635.815267086029], 
+# ['Oin', b'ispaghul', 2719.505171060562], ['Gloin', b'oversave', 7447.325847148895], ['Dori', b'indoxylic', 5256.7023832798],
+# ['Nori', b'swagsman', 10544.385281801224], ['Ori', b'airway', 497.6584358215332], 
+# 'Bifur', b'corrosible', 9117.48
+# ['Bofur', b'libellate', 11817.507262945175],
+# ['Durin', b'purrone', 33996.96827483177]]
+
+
+
 class User:
     def __init__(self, name, salt, hash) -> None:
         self.name = name
@@ -32,14 +44,16 @@ def main():
 
     passwords = []
 
-    for u in [users[0]]:
+    for u in users[1:]:
         
         start_time = time.time()
         for choice in wordList:
             
             if bcrypt.hashpw(choice, u.salt.encode()) == u.hash.encode():
                 end_time = time.time() - start_time
+                print("The password for", u.name, "was cracked in", end_time, "seconds")
                 passwords.append([u.name, choice, end_time])
+                break
 
 
     print(passwords)
