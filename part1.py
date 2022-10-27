@@ -58,6 +58,7 @@ def main():
             bnum = bin(int.from_bytes(test.digest(), byteorder='big'))[:bit_size]
             if bnum in storage:
                 print('Number', bnum, "collided with another key already in hash")
+                print("Number of inputs (length of dictionary:", len(storage))
                 break
             else:
                 storage[bnum] = a

@@ -23,7 +23,7 @@ class User:
 def main():
     wordList = []
     for x in nltk.corpus.words.words():
-        if len(x) < 10 and len(x) >= 6:
+        if len(x) <= 10 and len(x) >= 6:
             wordList.append(x.encode())
 
     users = [User("Bilbo", "$2b$08$J9FW66ZdPI2nrIMcOxFYI.", "$2b$08$J9FW66ZdPI2nrIMcOxFYI.qx268uZn.ajhymLP/YHaAsfBGP3Fnmq"),
@@ -44,7 +44,7 @@ def main():
 
     passwords = []
 
-    for u in users[1:]:
+    for u in users:
         
         start_time = time.time()
         for choice in wordList:
