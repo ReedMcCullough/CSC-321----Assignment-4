@@ -1,1 +1,1 @@
-# Password-Salt-Hash-and-Brute-Force-Decryption - CSC 321
+# Password-Salt-with-Hash-and-Brute-Force-Decryption - CSC 321
