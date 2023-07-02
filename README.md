@@ -2,6 +2,6 @@
 
 Harnessed helpful password security techniques while combating their vulnerabilities.<br>
 
-Part 1: <br>
+Part 1: Exploring Hamming Distances between strings and collisions while using a hashmap.<br>
 
 Part 2: 
